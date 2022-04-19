@@ -9448,7 +9448,7 @@ def addbun(request):
             img = request.FILES["image"]
             bun.image = img
             bun.save()
-            return redirect('gopands')
+            return redirect('godash')
         else:
             return redirect('gopands')
     except:
@@ -25362,7 +25362,7 @@ def runreportfilterednew(request, accountsid):
 
 @login_required(login_url='regcomp')
 def cashposition(request):
-    try:
+    # try:
         label_1 = []
         data_1 = []
         cmp1 = company.objects.get(id=request.session['uid'])
@@ -25378,8 +25378,8 @@ def cashposition(request):
                    'label_1': label_1,
                    'data_1': data_1}
         return render(request, 'app1/cashposition.html', context)
-    except:
-        return redirect('godash')
+    # except:
+    #     return redirect('godash')
 
 @login_required(login_url='regcomp')
 def editaccounts(request):
@@ -25552,3 +25552,8 @@ def deletestyle(request, customizeid):
         return redirect('customstyle')
     except:
         return redirect('customstyle')
+    
+
+@login_required(login_url='regcomp')
+def cash_flow_analyzer(request):
+    return render(request, 'app1/cash_flow_analyzer.html')
