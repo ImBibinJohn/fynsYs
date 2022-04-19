@@ -7,680 +7,1216 @@
                     <h2 class="mb-0">CASH FLOW ANALYZER</h2>
                 </center>
             </div>
-            <hr/>
+            <hr />
         </div>
     </div>
+
     <div class="card radius-15">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2">
-                    <input class="form-control mb-3 w-100" type="text" id="namefilt" onkeyup="namefilter()" placeholder="Filter by name">
+                    <input class="form-control mb-3 w-100" type="text" id="namefilt" onkeyup="namefilter()"
+                        placeholder="Filter by name">
                 </div>
                 <div class="col-md-5"></div>
                 <div class="col-md-2"></div>
-                <!-- <div class="btn-group col-md-3 w-75">
-                    <button type="button" class="btn btn-outline-info h-75"><a href="{% url 'balancesheet' %}">Run
-                                Report</a></button>
-                    <button type="button" class="btn btn-outline-info h-75"><a href="#"
-                                                                                       data-target="#newaccmodel"
-                                                                                       data-toggle="modal">New</a>
-                            </button>
-                    <button type="button" class="btn btn-outline-info h-75 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Import</a>
+                <div class="col-md-2"></div>
+                <div class="dropdown justify-content-end">
+                    <button type="button" class="btn btn-outline-info dropdown-toggle text-grey"
+                        data-toggle="dropdown">filter by
+                    </button>
+                    <div class="dropdown-menu" style="background-color: black;">
+                        <a class="dropdown-item" href="" style="height: 40px; font-size: 15px; color: white;">Date</a>
+                        <a class="dropdown-item" href="" style="height: 40px; font-size: 15px; color: white;">Month</a>
+                        <a class="dropdown-item" href="" style="height: 40px; font-size: 15px; color: white;">Month
+                            range</a>
                     </div>
-                    <div class="modal fade" id="newaccmodel">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content" style="background-color: #213b52;">
-                                <div class="modal-header">
-                                    <h3 class="m-3">Account</h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="card p-3 m-3">
-                                        <form method="post" action="createaccount">
-                                            {% csrf_token %}
-                                            <div class="row mt-2 mb-2">
-                                                <div class="col-md-6">
-                                                    <label for="acctyp">Account Type</label>
-                                                    <select name="acctype" id="select1" class="custom-select-md form-control w-100">
-                                                                {% for prodcut in Product %}
-                                                                    <option value="{{ prodcut.Pid }}">{{ prodcut.Pname }}</option>
-                                                                {% endfor %}
-                                                            </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="name">*Name</label>
-                                                    <input name="name" id="name" class="custom-select-md form-control w-100">
-                                                </div>
-                                            </div>
-                                            <div class="row mt-2 mb-2">
-                                                <div class="col-md-6">
-                                                    <label for="detype">*Detail Type</label>
-                                                    <select name="detype" id="select2" class="custom-select-md form-control w-100" onchange="nameinput(this)">
-                                                                {% for item in Items %}
-                                                                    <option text="{{ item.Pid }}"
-                                                                            value="{{ item.Itemname }}">{{ item.Itemname }}</option>
-                                                                {% endfor %}
-                                                            </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="description">Description</label>
-                                                    <input type="text" name="description" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <textarea class="form-control mt-2" name="Type details" cols="20" rows="10" style="font-size: small;" disabled>Use Cash and Cash Equivalents to track cash or assets that can be converted into cash immediately. For example, marketable securities and Treasury bills.</textarea>
-                                                </div>
-                                                <div class="col-md-6 mt-2">
-                                                    <div class="form-check">
-                                                        <div>
-                                                            <input class="form-check-input" name="issub" type="checkbox" value="is sub account" id="issub">
-                                                            <label class="form-check-label" for="issub">
-                                                                        Is sub-account
-                                                                    </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-2">
-                                                        <select name="gst" id="gst" class="custom-select-md form-control w-100" disabled="disabled">
-                                                                    <option value="Deferred CGST">Deferred CGST</option>
-                                                                    <option value="Deferred GST Input Credit">Deferred
-                                                                        GST Input Credit
-                                                                    </option>
-                                                                    <option value="Deferred IGST">Deferred IGST</option>
-                                                                    <option value="Deferred Krishi Kalyan Cess
-                                                                Input Credit">Deferred Krishi Kalyan Cess
-                                                                        Input Credit
-                                                                    </option>
-                                                                    <option value="Deferred Service Tax Input
-                                                                Credit">Deferred Service Tax Input
-                                                                        Credit
-                                                                    </option>
-                                                                    <option value="Deferred SGST">Deferred SGST</option>
-                                                                    <option value="Deferred VAT Input Credit">Deferred
-                                                                        VAT
-                                                                        Input
-                                                                        Credit
-                                                                    </option>
-                                                                    <option value="GST Refund">GST Refund</option>
-                                                                    <option value="Inventory Asset">Inventory Asset
-                                                                    </option>
-                                                                    <option value="Paid Insurance">Paid Insurance
-                                                                    </option>
-                                                                    <option value="Service Tax Refund">Service Tax
-                                                                        Refund
-                                                                    </option>
-                                                                    <option value="TDS Receivable">TDS Receivable
-                                                                    </option>
-                                                                    <option value="Uncategorised Asset">Uncategorised
-                                                                        Asset
-                                                                    </option>
-                                                                    <option value="Accumulated Depreciation">Accumulated
-                                                                        Depreciation
-                                                                    </option>
-                                                                    <option value="Buildings and Improvements">Buildings
-                                                                        and
-                                                                        Improvements
-                                                                    </option>
-                                                                    <option value="Furniture and Equipment">Furniture
-                                                                        and
-                                                                        Equipment
-                                                                    </option>
-                                                                    <option value="Land">Land</option>
-                                                                    <option value="Leasehold Improvements">Leasehold
-                                                                        Improvements
-                                                                    </option>
-                                                                    <option value="CGST Payable">CGST Payable</option>
-                                                                    <option value="CST Payable">CST Payable</option>
-                                                                    <option value="CST Suspense">CST Suspense</option>
-                                                                    <option value="GST Payable">GST Payable</option>
-                                                                    <option value="GST Suspense">GST Suspense</option>
-                                                                    <option value="IGST Payable">IGST Payable</option>
-                                                                    <option value="Input CGST">Input CGST</option>
-                                                                    <option value="Input CGST Tax RCM">Input CGST Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Input IGST">Input IGST</option>
-                                                                    <option value="Input IGST Tax RCM">Input IGST Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Input Krishi Kalyan Cess">Input
-                                                                        Krishi
-                                                                        Kalyan
-                                                                        Cess
-                                                                    </option>
-                                                                    <option value="Input Krishi Kalyan Cess
-                                                                RCM">Input Krishi Kalyan Cess
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Input Service Tax">Input Service Tax
-                                                                    </option>
-                                                                    <option value="Input Service Tax RCM">Input Service
-                                                                        Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Input SGST">Input SGST</option>
-                                                                    <option value="Input SGST Tax RCM">Input SGST Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Input VAT 14%">Input VAT 14%</option>
-                                                                    <option value="Input VAT 4%">Input VAT 4%</option>
-                                                                    <option value="Input VAT 5%">Input VAT 5%</option>
-                                                                    <option value="Krishi Kalyan Cess Payable">Krishi
-                                                                        Kalyan
-                                                                        Cess Payable
-                                                                    </option>
-                                                                    <option value="Krishi Kalyan Cess
-                                                                Suspense">Krishi Kalyan Cess
-                                                                        Suspense
-                                                                    </option>
-                                                                    <option value="Output CGST">Output CGST</option>
-                                                                    <option value="Output CGST Tax RCM">Output CGST Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Output CST 2%">Output CST 2%</option>
-                                                                    <option value="Output IGST">Output IGST</option>
-                                                                    <option value="Output IGST Tax RCM">Output IGST Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Output Krishi Kalyan Cess">Output
-                                                                        Krishi
-                                                                        Kalyan Cess
-                                                                    </option>
-                                                                    <option value="Output Krishi Kalyan Cess
-                                                                RCM">Output Krishi Kalyan Cess
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Output Service Tax">Output Service
-                                                                        Tax
-                                                                    </option>
-                                                                    <option value="Output Service Tax RCM">Output
-                                                                        Service
-                                                                        Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Output SGST">Output SGST</option>
-                                                                    <option value="Output SGST Tax RCM">Output SGST Tax
-                                                                        RCM
-                                                                    </option>
-                                                                    <option value="Output VAT 14%">Output VAT 14%
-                                                                    </option>
-                                                                    <option value="Output VAT 4%">Output VAT 4%</option>
-                                                                    <option value="Output VAT 5%">Output VAT 5%</option>
-                                                                    <option value="Service Tax Payable">Service Tax
-                                                                        Payable
-                                                                    </option>
-                                                                    <option value="Service Tax Suspense">Service Tax
-                                                                        Suspense
-                                                                    </option>
-                                                                    <option value="SGST Payable">SGST Payable</option>
-                                                                    <option value="SGST Suspense">SGST Suspense</option>
-                                                                    <option value="Swachh Bharat Cess Payable">Swachh
-                                                                        Bharat
-                                                                        Cess Payable
-                                                                    </option>
-                                                                    <option value="Swachh Bharat Cess
-                                                                Suspense">Swachh Bharat Cess
-                                                                        Suspense
-                                                                    </option>
-                                                                    <option value="TDS Payable">TDS Payable</option>
-                                                                    <option value="VAT Payable">VAT Payable</option>
-                                                                    <option value="VAT Suspense">VAT Suspense</option>
-                                                                    <option value="Opening Balance">Opening Balance
-                                                                    </option>
-                                                                    <option value="Equity">Equity</option>
-                                                                </select>
-                                                    </div>
-                                                    <div class="mt-2">
-                                                        <label for="deftaxcode">Default Tax Code</label>
-                                                        <select name="deftaxcode" id="deftaxcode" class="custom-select-md form-control w-100">
-                                                                    <option value="0">Choose</option>
-                                                                    <option value="18.0% IGST">18.0% IGST</option>
-                                                                    <option value="14.00% ST">14.00% ST</option>
-                                                                    <option value="0% IGST">0% IGST</option>
-                                                                    <option value="Out of Scope">Out of Scope</option>
-                                                                    <option value="0% GST">0% GST</option>
-                                                                    <option value="14.5% ST">14.5% ST</option>
-                                                                    <option value="14.0% VAT">14.0% VAT</option>
-                                                                    <option value="6.0% IGST">6.0% IGST</option>
-                                                                    <option value="28.0% IGST">28.0% IGST</option>
-                                                                    <option value="15.0% ST">15.0% ST</option>
-                                                                    <option value="28.0% GST">28.0% GST</option>
-                                                                    <option value="12.0% GST">12.0% GST</option>
-                                                                    <option value="18.0% GST">18.0% GST</option>
-                                                                    <option value="3.0% GST">3.0% GST</option>
-                                                                    <option value="0.2% IGST">0.2% IGST</option>
-                                                                    <option value="5.0% GST">5.0% GST</option>
-                                                                    <option value="6.0% GST">6.0% GST</option>
-                                                                    <option value="0.2% GST">0.2% GST</option>
-                                                                    <option value="Exempt IGST">Exempt IGST</option>
-                                                                    <option value="3.0% IGST">3.0% IGST</option>
-                                                                    <option value="4.0% VAT">4.0% VAT</option>
-                                                                    <option value="5.0% IGST">5.0% IGST</option>
-                                                                    <option value="12.36% ST">12.36% ST</option>
-                                                                    <option value="5.0% VAT">5.0% VAT</option>
-                                                                    <option value="Exempt GST">Exempt GST</option>
-                                                                    <option value="12.0% IGST">12.0% IGST</option>
-                                                                    <option value="2.0% CST">2.0% CST</option>
-                                                                </select>
-                                                    </div>
-                                                    <div class="row mt-2" style="display: inline-flex;">
-                                                        <div class="col-md-6">
-                                                            <label for="balance">Balance</label>
-                                                            <input type="text" name="balance" id="balance" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="asof">as of</label>
-                                                            <input type="text" name="asof" id="asof" class="form-control" value="{{ tod }}" required>
-                                                        </div>
-                                                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="table-responsive-md">
+                        <table class="table table-bordered" id="tab_logic">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"></th>
+                                    <th class="text-center">[MONTH]</th>
+                                    <th class="text-center">[MONTH]</th>
+                                    <th class="text-center">[MONTH]</th>
+                                    <th class="text-center">[MONTH]</th>
+                                    <th class="text-center">[MONTH]</th>
+                                    <th class="text-center">[MONTH]</th>
+                                    <th class="text-center">TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            <h6><b>Beginning Cash Balance</b></h6>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered" id="tab_logic">
 
-                                                </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <button type="button" onclick="{% url 'gocoa' %}" class="btn btn-outline-light">Cancel
-                                                        </button>
-                                                <button type="submit" class="btn btn-outline-light">Save and
-                                                            close
-                                                        </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <label>
+                                <h6><b>Cash Inflows (Income):</b></h6>
+                            </label>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6><b>Accts. Rec. Collections</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Loan Proceeds</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Sales & Receipts</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Other:</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Total Cash Inflows</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Cash Balance</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                
+                                <table class="table table-bordered" id="tab_logic">
+                                    <label for="">
+                                        <h6><b>Cash Outflows (Expenses):</b></h6>
+                                    </label>
+                                    <tbody>
+                                
+                                <tr>
+                                    <td>
+                                        <h6><b>Advertising</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Bank Service Charges</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Credit Card Fees</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Delivery</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Health Insurance</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Insurance</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Interest</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Inventory Purchases</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Miscellaneous</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Office</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Payroll</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Payroll Taxes</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Professional Fees</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Rent or Lease</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Subscriptions & Dues</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Supplies</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Taxes & Licenses</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Utilities & Telephone</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Other:</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Subtotal</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                <table class="table table-bordered" id="tab_logic">
+                                
+                                    <label>
+                                        <h6><b>Other Cash Out Flows:</b></h6>
+                                    </label>
+                                    <tbody>
+                                       
+                                <tr>
+                                    <td>
+                                        <h6><b>Capital Purchases</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Loan Principal</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Owner’s Draw</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Other:</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h6><b>Subtotal</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Total Cash Outflows</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6><b>Ending Cash Balance</b></h6>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hsn1" id="hsn1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="description1" id="description1"
+                                            style="background-color: #2f516f;">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control qty" name="qty1" id="qty1"
+                                            style="background-color: #2f516f;" step="any" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control price" name="price1" id="price1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control total" name="total1" id="total1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control tax" name="tax1" id="tax1"
+                                            style="background-color: #2f516f;" value="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div> -->
-                <table class="table table-responsive-md table-responsive-sm table-responsive-lg table-hover" style="overflow: scroll;" id="tabletobe">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">MONTH</th>
-                            <th scope="col">MONTH</th>
-                            <th scope="col">MONTH</th>
-                            <th scope="col">MONTH</th>
-                            <th scope="col">MONTH</th>
-                            <th scope="col">MONTH</th>
-                            <th scope="col">TOTAL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td><b>Beginning Cash Balance</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        <tr>
-
-                            <td><b> Cash Inflows (Income): </b></td>
-
-                        </tr>
-                        <tr>
-                            <td>Accts. Rec. Collections</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        <tr>
-                            <td>Loan Proceeds</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Sales & Receipts</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Other:</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Total Cash Inflows</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b> Cash Balance</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Cash Outflows (Expenses):</b></td>
-                        </tr>
-                        <tr>
-                            <td>Advertising</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Bank Service Charges</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Credit Card Fees/td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                        </tr>
-                        <tr>
-                            <td>Delivery</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Health Insurance</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Insurance</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Interest</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Inventory Purchases</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Miscellaneous</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Office</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Payroll</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Payroll Taxes</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Professional Fees</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Rent or Lease</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Subscriptions & Dues</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Supplies</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Taxes & Licenses</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Utilities & Telephone</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Other:</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Subtotal</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Other Cash Out Flows:</b></td>
-                        </tr>
-                        <tr>
-                            <td>Capital Purchases</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Loan Principal</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Owner’s Draw</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Other:</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Subtotal</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Total Cash Outflows</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><b>Ending Cash Balance</b></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     var $checkBox = $('#issub'),
         $select = $('#gst');
-    $(document).ready(function() {
-        $checkBox.on('change', function(e) {
+    $(document).ready(function () {
+        $checkBox.on('change', function (e) {
             if ($(this).is(':checked')) {
                 $select.removeAttr('disabled');
             } else {
@@ -702,7 +1238,7 @@
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("namefilt");
         filter = input.value.toUpperCase();
-        table = document.getElementById("tabletobe");
+        table = document.getElementById("tab_logic");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];

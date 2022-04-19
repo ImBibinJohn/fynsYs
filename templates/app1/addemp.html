@@ -408,8 +408,13 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><h6>Basic salary</h6></td>
+                                    <td><h6>Confirm Salary</h6></td>
                                     <td><input type="number" class="form-control" id="basic" name="basic" required
+                                               onkeyup="paycal()" style="background-color: #2f516f;color: white;"></td>
+                                </tr>
+                                <tr>
+                                    <td><h6>Basic salary</h6></td>
+                                    <td><input type="number" class="form-control" id="bs" name="bs" required
                                                onkeyup="paycal()" style="background-color: #2f516f;color: white;"></td>
                                 </tr>
 
@@ -599,6 +604,7 @@
                 <script>
                     function paycal() {
                         var basic = document.getElementById('basic').value;
+                        var bs = document.getElementById('bs').value;
                         var age = document.getElementById('age').value;
                         var totalrentpaid = document.getElementById('totalrentpaid').value;
                         var hrareceived = document.getElementById('hrareceived').value;
@@ -610,15 +616,23 @@
 
 
                         var pf;
-                        if (basic <= 15000) {
+                        if (basic <= basic) {
                             pf = (parseFloat(basicda) * 12) / 100;
                         } else {
                             pf = 0;
                         }
 
 
+                        var pj;
+                        if (basic <= basic) {
+                            pj = (parseFloat(basicda) * 85) / 100;
+                        } else {
+                            pj = 0;
+                        }
+
+
                         var esi;
-                        if (basic <= 21000) {
+                        if (basic <= basic) {
                             esi = (parseFloat(basicda) * 0.75) / 100;
                         } else {
                             esi = 0;
@@ -672,6 +686,7 @@
                         document.getElementById('da').value = da;
                         document.getElementById('othramount1').value = hra;
                         document.getElementById('provifund').value = pf;
+                        document.getElementById('bs').value = pj;
                         document.getElementById('esi').value = esi;
                         document.getElementById('proftax').value = pt;
 
