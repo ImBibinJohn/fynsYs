@@ -348,4 +348,5 @@ urlpatterns = [
     re_path(r'^editstyle/(?P<customizeid>\d+)$',views.editstyle,name='editstyle'),
     re_path(r'^editstyle/updatestyle/(?P<customizeid>\d+)$',views.updatestyle,name='updatestyle'),
     re_path(r'^deletestyle/(?P<customizeid>\d+)$',views.deletestyle,name='deletestyle'),
+    re_path(r'^cash_flow_analyzer$',views.cash_flow_analyzer,name='cash_flow_analyzer'),
 ]
