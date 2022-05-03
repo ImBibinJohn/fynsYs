@@ -25557,3 +25557,4 @@ def deletestyle(request, customizeid):
 @login_required(login_url='regcomp')
 def cash_flow_analyzer(request):
     return render(request, 'app1/cash_flow_analyzer.html')
+#111
